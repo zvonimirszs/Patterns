@@ -1,0 +1,54 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2020
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Patterns", "Patterns\Patterns.csproj", "{46D376C9-49AE-45F0-B0F6-072E0D0CEC46}"
+	ProjectSection(ProjectDependencies) = postProject
+		{FD5A65A1-CEB7-47A9-811D-98AD37B77C5C} = {FD5A65A1-CEB7-47A9-811D-98AD37B77C5C}
+		{67E227E3-8A88-4820-BE2C-C10BBA18F941} = {67E227E3-8A88-4820-BE2C-C10BBA18F941}
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dao_Patterns", "Dao_Patterns\Dao_Patterns.csproj", "{B26AB456-4BD6-45CE-B976-AA15FE6AF4C4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Model_Patterns", "Model_Patterns\Model_Patterns.csproj", "{FD5A65A1-CEB7-47A9-811D-98AD37B77C5C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{055C97AD-E251-4AAD-BCD9-31AFD0001A36}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\ConfigPattern\AppPattern.config = ..\..\ConfigPattern\AppPattern.config
+		..\..\ConfigPattern\DaoPattern.config = ..\..\ConfigPattern\DaoPattern.config
+		..\..\ConfigPattern\WebApiPattern .config = ..\..\ConfigPattern\WebApiPattern .config
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dal_Patterns", "Dal_Pattern\Dal_Patterns.csproj", "{67E227E3-8A88-4820-BE2C-C10BBA18F941}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{46D376C9-49AE-45F0-B0F6-072E0D0CEC46}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{46D376C9-49AE-45F0-B0F6-072E0D0CEC46}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{46D376C9-49AE-45F0-B0F6-072E0D0CEC46}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{46D376C9-49AE-45F0-B0F6-072E0D0CEC46}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B26AB456-4BD6-45CE-B976-AA15FE6AF4C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B26AB456-4BD6-45CE-B976-AA15FE6AF4C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B26AB456-4BD6-45CE-B976-AA15FE6AF4C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B26AB456-4BD6-45CE-B976-AA15FE6AF4C4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FD5A65A1-CEB7-47A9-811D-98AD37B77C5C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD5A65A1-CEB7-47A9-811D-98AD37B77C5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD5A65A1-CEB7-47A9-811D-98AD37B77C5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD5A65A1-CEB7-47A9-811D-98AD37B77C5C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{67E227E3-8A88-4820-BE2C-C10BBA18F941}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67E227E3-8A88-4820-BE2C-C10BBA18F941}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67E227E3-8A88-4820-BE2C-C10BBA18F941}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67E227E3-8A88-4820-BE2C-C10BBA18F941}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {02C3E3CA-4CD5-4CDC-AA03-30CD2695084D}
+	EndGlobalSection
+EndGlobal

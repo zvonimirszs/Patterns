@@ -1,0 +1,61 @@
+﻿@model Model_Patterns.Interfaces.IDocument
+
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <h4>Document</h4>
+        <hr />
+        <dl class="dl-horizontal"></dl>
+    </div>
+    <p>
+        @Html.ActionLink(linkText: "Back to List",
+                                                 actionName: "Index",
+                                                 controllerName: "Search",
+                                                 routeValues: null,
+                                                 htmlAttributes: null) |
+
+        @Html.ActionLink(linkText: "Create law document",
+                                                 actionName: "Create",
+                                                 controllerName: "Document",
+                                                 routeValues: null,
+                                                 htmlAttributes: null)
+        <br />
+        @Model.DocTitle
+        <br />
+        @Html.ActionLink(linkText: "PDF print",
+                                                 actionName: "Reporting",
+                                                 controllerName: "Document",
+                                                 routeValues: new { sopi = Model.SOPI, type = Model_Patterns.Enumerations.Reporting.Pdf },
+                                                 htmlAttributes: null) |
+        @Html.ActionLink(linkText: "Html print",
+                                                 actionName: "Reporting",
+                                                 controllerName: "Document",
+                                                 routeValues: new { sopi = Model.SOPI, type = Model_Patterns.Enumerations.Reporting.Html },
+                                                 htmlAttributes: null)
+    </p>
+
+    <table class="table">
+        <tr>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model.Segments)
+        {
+            <tr>
+                <td>
+                    @item.SegmentContent
+                </td>
+            </tr>
+        }
+
+    </table>
+</body>
+</html>

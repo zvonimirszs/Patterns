@@ -1,0 +1,57 @@
+﻿@model IEnumerable<Model_Patterns.Interfaces.IDocument>
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Search</title>
+</head>
+<body>
+    <p>
+        @Html.ActionLink(linkText: "Sort by Name",
+                                  actionName: "Sort",
+                                  controllerName: "Search",
+                                  routeValues: new { typeid = 1 },
+                                  htmlAttributes: null)
+    </p>
+    <p>
+        @Html.ActionLink(linkText: "Sort by Date",
+                                   actionName: "Sort",
+                                   controllerName: "Search",
+                                   routeValues: new { typeid = 2 },
+                                   htmlAttributes: null)
+    </p>
+    <p>
+        @Html.ActionLink(linkText: "Sort by Type",
+                                   actionName: "Sort",
+                                   controllerName: "Search",
+                                   routeValues: new { typeid = 3 },
+                                   htmlAttributes: null)
+    </p>
+    <table class="table">
+        <tr>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.DocTitle
+                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink(linkText: "Details",
+                        actionName: "Index",
+                        controllerName: "Document",
+                        routeValues: new { sopi = item.SOPI },
+                        htmlAttributes: null) |
+  
+                </td>
+            </tr>
+        }
+
+    </table>
+</body>
+</html>
+

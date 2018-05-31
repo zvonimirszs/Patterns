@@ -1,0 +1,13 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace Model_Patterns.Interfaces
+{
+    public interface ICache
+    {
+        void Remove(string key);
+        void Store(string key, object o);
+        T Retreive<T>(string key);
+    }
+}
