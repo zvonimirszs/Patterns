@@ -15,10 +15,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		..\..\ConfigPattern\AppPattern.config = ..\..\ConfigPattern\AppPattern.config
 		..\..\ConfigPattern\DaoPattern.config = ..\..\ConfigPattern\DaoPattern.config
+		ToDo.txt = ToDo.txt
 		..\..\ConfigPattern\WebApiPattern .config = ..\..\ConfigPattern\WebApiPattern .config
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dal_Patterns", "Dal_Pattern\Dal_Patterns.csproj", "{67E227E3-8A88-4820-BE2C-C10BBA18F941}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestPatterns", "UnitTestPatterns\UnitTestPatterns.csproj", "{CD4CF6BC-F809-4B6C-B2F8-AEF83DF57977}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -38,6 +41,10 @@ Global
 		{67E227E3-8A88-4820-BE2C-C10BBA18F941}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{67E227E3-8A88-4820-BE2C-C10BBA18F941}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{67E227E3-8A88-4820-BE2C-C10BBA18F941}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CD4CF6BC-F809-4B6C-B2F8-AEF83DF57977}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD4CF6BC-F809-4B6C-B2F8-AEF83DF57977}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD4CF6BC-F809-4B6C-B2F8-AEF83DF57977}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD4CF6BC-F809-4B6C-B2F8-AEF83DF57977}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
