@@ -3,38 +3,33 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
-    <title>@ViewBag.Title</title>
+    <title>@ViewBag.Title - NRAKO</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    <div style="width: auto; background-color: #728ea7;">
-        @if (Request.IsAuthenticated)
-        {
-            <strong>@Html.Encode(User.Identity.Name)</strong>
-            @Html.ActionLink("Sign Out", "Logout", "User")
-        }
-        else
-        {
-            @Html.ActionLink("Register", "Register", "User")
-            <span> | </span>
-            @Html.ActionLink("Sign In", "Login", "User")
-        }
-    </div>
+
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
+                <button type="button" class="btn btn-default" data-toggle="collapse" data-target=".navbar-collapse">
+                    @ViewBag.Title
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
+                <br />
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Login", "Login", "User", new { area = "" }, null)</li>
-                    <li>@Html.ActionLink("Search", "Index", "Search", new { area = "" }, null)</li>
+                    @if (Request.IsAuthenticated)
+                    {
+                        <li>@Html.Encode(User.Identity.Name)
+                        @Html.ActionLink("Sign Out", "Logout", "User", new { @class = "btn btn-primary btn-lg" })</li>
+                    }
+                    else
+                    {
+                        <li>@Html.ActionLink("Register", "Register", "User", new { @class = "btn btn-primary btn-lg" })</li>
+                        <br />
+                        <li>@Html.ActionLink("Sign In", "Login", "User", new { @class = "btn btn-primary btn-lg" })</li>
+                    }
                 </ul>
             </div>
         </div>
@@ -43,7 +38,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year - Demo NRAKO</p>
         </footer>
     </div>
 

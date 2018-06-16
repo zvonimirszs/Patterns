@@ -1,0 +1,52 @@
+﻿//Verzioniranje
+//DONE: Version control systems (Git Hub - gh)
+//DONE: kreirati repozitorij na gh
+//DONE: spojiti projekt na gh
+//DONE: napraviti testni commit i push
+
+//TODO: napraviti branch "Clean code"
+//TODO: kreirati određenu funkcionalnost u branchu
+//TODO: mergati branch sa masterom
+
+//TODO: napraviti branch "No fun for you"
+//TODO: kreirati određenu funkcionalnost u branchu
+//TODO: obrisati branch
+
+//Clean code
+//TODO: stilizirati naslovnicu
+//TODO: stilizirati login stranicu
+//TODO: stilizirati stranicu za dokumente
+//TODO: sve putanje i hardkodirane tekstove prebaciti u config dokumente
+
+//Clean code
+//TODO: imenovanje metoda - pregledati sve metode (Clean Code)
+//TODO: imenovanje varijabli - pregledati sve varijable (Clean Code)
+//TODO: formatiranje (Clean Code)
+//TODO: error handling (Clean Code)
+
+//Unit testovi
+// TODO: unit testing - napraviti testove na bar 4 klase (u svakom sloju jedna)
+// TODO: napraviti usermanagment koja handla korisničke bodove i ima neku logiku na bazi bodova i tip korisnika - Pravo pristupa dokumentu
+// TODO: napraviti Mocking sa logerom - testirati da li vraća klasu i da li je klasa implementirana
+
+Testing framework: NUnit, MSTest, MbUnit
+Test runner: NUnit, MSTest, ReSharper, TDD.NET
+Mocking framework: Rhino Mocks, Moq, TypeMock
+Mocking: 
+-	Creating fake objects for you
+-	Nothing you can’t do manually
+-	Set and inspect values on a fake object
+-	Inspect method calls and args on a fake object
+
+
+//TODO: integration testing 
+Big Bang Integration testing
+Top Down Integration testing
+Bottom Up Integration testing
+Mixed Integration testing
+
+
+// AOP Aspect-oriented programming - vjezbe 2
+
+
+//Metrika - vjezbe 5
