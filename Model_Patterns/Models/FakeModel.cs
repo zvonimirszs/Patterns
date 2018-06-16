@@ -6,5 +6,10 @@ namespace Model_Patterns.Models
 {
     public class FakeModel
     {
+
+        public FakeModel()
+        {
+
+        }
     }
 }
