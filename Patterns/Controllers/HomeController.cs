@@ -27,13 +27,13 @@ namespace Patterns.Controllers
              */
             #region Logger
             //Logger - na disk
-            Log log = new LoggerProvider(Enumerations.Logger.File);
+            Log logProvider = new LoggerProvider(Enumerations.Logger.File);
             //log.Logger = CreateLogger("");
-            log.InsertLog(CreateLogger(""));
-            log.InsertLog(CreateLogger("2"));
+            logProvider.InsertLog(CreateLogger(""));
+            logProvider.InsertLog(CreateLogger("2"));
             //Logger - na db
-            log = new LoggerProvider(Enumerations.Logger.Db);
-            log.InsertLog(CreateLogger(""));
+            logProvider = new LoggerProvider(Enumerations.Logger.Db);
+            logProvider.InsertLog(CreateLogger(""));
             #endregion
 
             return View();

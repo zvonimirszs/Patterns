@@ -3,6 +3,7 @@ using Model_Patterns.Abstract;
 using Model_Patterns.Interfaces;
 using Model_Patterns.Models;
 using Model_Patterns.Models.Content;
+using Model_Patterns.Models.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -17,87 +18,108 @@ namespace Dal_Patterns.Models
         //TODO: implementirati Repository
         public IDocument GetDocument(string Sopi)
         {
-            string conn = Config.DictConfig["DbConn"];
-            SqlParameter[] spParameter = new SqlParameter[1];
-
-            spParameter[0] = new SqlParameter("@Sopi", SqlDbType.VarChar, 256);
-            spParameter[0].Direction = ParameterDirection.Input;
-            spParameter[0].Value = Sopi;
-
-            DataSet ds = SqlHelper.ExecuteDataset(conn, CommandType.StoredProcedure, "GetDocument", spParameter);
-
-            DataTable dtHeader = ds.Tables[0];
-            DataTable dtSegment = ds.Tables[1];
-            DataTable dtPackage = ds.Tables[2];
-            List<Segment> segments = new List<Segment>();
-            List<Package> packages = new List<Package>();
-
-            IDocument doc = CreateDocument(dtHeader.Rows[0]);
-            foreach (DataRow item in dtSegment.Rows)
+            try
             {
-                segments.Add(CreateSegment(item));
-            }
-            doc.Segments = segments;
-            foreach (DataRow item in dtPackage.Rows)
-            {
-                packages.Add(CreatePackage(item));
-            }
-            doc.Packages = packages;
-            return doc;
-        }
+                string conn = Config.DictConfig["DbConn"];
+                SqlParameter[] spParameter = new SqlParameter[1];
 
-        public List<IDocument> GetDocuments()
-        {
-            string conn = Config.DictConfig["DbConn"];
-            
-            DataSet ds = SqlHelper.ExecuteDataset(conn, CommandType.StoredProcedure, "GetDocuments");
-            List<IDocument> list = new List<IDocument>();
-            foreach (DataRow item in ds.Tables[0].Rows)
-            {
-                list.Add(CreateDocument(item));
-            }
-            return list;
+                spParameter[0] = new SqlParameter("@Sopi", SqlDbType.VarChar, 256);
+                spParameter[0].Direction = ParameterDirection.Input;
+                spParameter[0].Value = Sopi;
 
-        }
-        public IUser UserAutorization(string username, string password)
-        {
-            string conn = Config.DictConfig["DbConn"];
-            IUser user = null;
-            SqlParameter[] spParameter = new SqlParameter[2];
+                DataSet ds = SqlHelper.ExecuteDataset(conn, CommandType.StoredProcedure, "GetDocument", spParameter);
 
-            spParameter[0] = new SqlParameter("@username", SqlDbType.VarChar, 8);
-            spParameter[0].Direction = ParameterDirection.Input;
-            spParameter[0].Value = username;
-
-            spParameter[1] = new SqlParameter("@password", SqlDbType.VarChar, 70);
-            spParameter[1].Direction = ParameterDirection.Input;
-            spParameter[1].Value = password;
-
-            DataSet ds = SqlHelper.ExecuteDataset(conn, CommandType.StoredProcedure , "GetUserForLogin", spParameter);
-
-            if (ds.Tables[0].Rows.Count == 1)
-            {
-                DataTable dtPackage = ds.Tables[1];
+                DataTable dtHeader = ds.Tables[0];
+                DataTable dtSegment = ds.Tables[1];
+                DataTable dtPackage = ds.Tables[2];
+                List<Segment> segments = new List<Segment>();
                 List<Package> packages = new List<Package>();
 
-
-                user = new User
+                IDocument doc = CreateDocument(dtHeader.Rows[0]);
+                foreach (DataRow item in dtSegment.Rows)
                 {
-                    UserName = ds.Tables[0].Rows[0]["UserName"].ToString(),
-                    Password = ds.Tables[0].Rows[0]["Password"].ToString()
-                };
-
+                    segments.Add(CreateSegment(item));
+                }
+                doc.Segments = segments;
                 foreach (DataRow item in dtPackage.Rows)
                 {
                     packages.Add(CreatePackage(item));
                 }
-                user.Packages = packages;
-
-
-                return user;
+                doc.Packages = packages;
+                return doc;
             }
-            else
-                return user;
+            catch (Exception e)
+            {
+                throw new DataProviderException("Error in GetDocument method", e);
+            }
+
+        }
+
+        public List<IDocument> GetDocuments()
+        {
+            try
+            {
+                string conn = Config.DictConfig["DbConn"];
+            
+                DataSet ds = SqlHelper.ExecuteDataset(conn, CommandType.StoredProcedure, "GetDocuments");
+                List<IDocument> list = new List<IDocument>();
+                foreach (DataRow item in ds.Tables[0].Rows)
+                {
+                    list.Add(CreateDocument(item));
+                }
+                return list;
+            }
+            catch (Exception e)
+            {
+                throw new DataProviderException("Error in GetDocuments method", e);
+            }
+        }
+        public IUser UserAutorization(string username, string password)
+        {
+            try
+            {
+                string conn = Config.DictConfig["DbConn"];
+                IUser user = null;
+                SqlParameter[] spParameter = new SqlParameter[2];
+
+                spParameter[0] = new SqlParameter("@username", SqlDbType.VarChar, 8);
+                spParameter[0].Direction = ParameterDirection.Input;
+                spParameter[0].Value = username;
+
+                spParameter[1] = new SqlParameter("@password", SqlDbType.VarChar, 70);
+                spParameter[1].Direction = ParameterDirection.Input;
+                spParameter[1].Value = password;
+
+                DataSet ds = SqlHelper.ExecuteDataset(conn, CommandType.StoredProcedure , "GetUserForLogin", spParameter);
+
+                if (ds.Tables[0].Rows.Count == 1)
+                {
+                    DataTable dtPackage = ds.Tables[1];
+                    List<Package> packages = new List<Package>();
+
+
+                    user = new User
+                    {
+                        UserName = ds.Tables[0].Rows[0]["UserName"].ToString(),
+                        Password = ds.Tables[0].Rows[0]["Password"].ToString()
+                    };
+
+                    foreach (DataRow item in dtPackage.Rows)
+                    {
+                        packages.Add(CreatePackage(item));
+                    }
+                    user.Packages = packages;
+
+
+                    return user;
+                }
+                else
+                    return user;
+            }
+            catch (Exception e)
+            {
+                throw new DataProviderException("Error in UserAutorization method", e);
+            }
 
         }
         #region Private methods

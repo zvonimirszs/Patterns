@@ -1,5 +1,6 @@
 ﻿using Model_Patterns;
 using Model_Patterns.Interfaces;
+using Patterns.Models;
 using Patterns.Models.Cache;
 using System;
 using System.Collections.Generic;
@@ -12,17 +13,7 @@ namespace Patterns.App_Code
         private ICache _IProviderCache = null;
         public ICache GetInstance(Enumerations.Cache cacheType)
         {
-            if (cacheType == Enumerations.Cache.Http)
-            {
-                if (_IProviderCache == null)
-                    _IProviderCache = (ICache)Activator.CreateInstance(typeof(HttpCacheAdapter));
-
-            }
-            else
-            {
-                if (_IProviderCache == null)
-                    _IProviderCache = (ICache)Activator.CreateInstance(typeof(HttpCacheAdapter));
-            }
+            _IProviderCache = Utilities.GetCacheProvider(_IProviderCache, cacheType);
             return _IProviderCache;
         }
     }

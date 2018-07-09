@@ -17,16 +17,16 @@ namespace Patterns.Controllers
         {
 
             DataProvider data = new DataProvider();
-            List<IDocument> list = data.GetDocuments();
+            List<IDocument> groupOfDocuments = data.GetDocuments();
 
-            return View(list);
+            return View(groupOfDocuments);
         }
 
         public ActionResult Sort(int typeid)
         {
             //Pattern: Strategy
             DataProvider data = new DataProvider();
-            List<IDocument> list = data.GetDocuments();
+            List<IDocument> groupOfDocuments = data.GetDocuments();
             IComparer<IDocument> sort;
             switch (typeid)
             {
@@ -43,8 +43,8 @@ namespace Patterns.Controllers
                     sort = new Document_SortByName();
                     break;
             }
-            list.Sort(sort);
-            return View("Index", list);
+            groupOfDocuments.Sort(sort);
+            return View("Index", groupOfDocuments);
         }
     }
 }

@@ -8,7 +8,7 @@ namespace Model_Patterns.Abstract
     public abstract class Content
     {
         protected IDocument doc;
-        public void Create()
+        public void CreateDocument()
         {
             createHeader();
             createSegments();

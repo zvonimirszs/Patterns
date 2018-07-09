@@ -15,7 +15,6 @@ namespace Model_Patterns.Models
         [DataType(DataType.Password)]
         [Display(Name = "Lozinka")]
         public string Password { get; set; }
-
         [Display(Name = "Zapamti moje podatke")]
         public bool RememberMe { get; set; }
         public List<Package> Packages { get; set; }

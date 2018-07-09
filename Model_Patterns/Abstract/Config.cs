@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Model_Patterns.Models.Exceptions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -26,9 +27,9 @@ namespace Model_Patterns.Abstract
 
                 this.DictConfig = DictConfig;
             }
-            catch (Exception)
+            catch (Exception e)
             {
-
+                throw new ConfigurationException("Error while reading config!!!", e);
             }
         }
     }

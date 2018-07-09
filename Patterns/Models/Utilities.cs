@@ -7,6 +7,7 @@ using System.Configuration;
 using System.Xml.Linq;
 using Model_Patterns.Interfaces;
 using Model_Patterns.Abstract;
+using Patterns.Models.Cache;
 
 namespace Patterns.Models
 {
@@ -80,5 +81,31 @@ namespace Patterns.Models
             }
         }
         #endregion
+
+        #region Providers
+        public static ICache GetCacheProvider(ICache iProviderDocument, Enumerations.Cache cacheType)
+        {
+            switch (cacheType)
+            {
+                case Enumerations.Cache.Http:
+                    if (iProviderDocument == null)
+                        iProviderDocument = (ICache)Activator.CreateInstance(typeof(HttpCacheAdapter));
+                    break;
+                default:
+                    if (iProviderDocument == null)
+                        iProviderDocument = (ICache)Activator.CreateInstance(typeof(HttpCacheAdapter));
+                    break;
+            }
+            return iProviderDocument;
+        }
+        #endregion
+        public static Boolean IsCacheAvailableForRetrive(string sCacheId)
+        {
+            return ((Utilities.CacheEnabledDocument) && (HttpContext.Current.Cache[sCacheId] != null));
+        }
+        public static Boolean IsCacheAvailableForStorage(object objForComparison)
+        {
+            return ((Utilities.CacheEnabledDocument) && (objForComparison != null));
+        }
     }
 }

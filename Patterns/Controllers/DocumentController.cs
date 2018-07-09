@@ -1,4 +1,5 @@
 ﻿using Model_Patterns.Models.Content;
+using Model_Patterns.Models.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,19 +18,19 @@ namespace Patterns.Controllers
         [CheckAuthorization]
         public ActionResult Index(string sopi)
         {
-            DataProvider data = new DataProvider();
-            IDocument doc = data.GetDocument(sopi);
-            HttpContext.Session["Document"] = doc;
+            DataProvider dataProvider = new DataProvider();
+            IDocument document = dataProvider.GetDocumentByKey(sopi);
+            HttpContext.Session["Document"] = document;
 
-            return View(doc); 
+            return View(document); 
         }
 
         [CheckAuthorization]
         public ActionResult Reporting(string sopi, Enumerations.Reporting type)
         {
             //Pattern: Facade
-            DataProvider data = new DataProvider();
-            IDocument doc = data.GetDocument(sopi);
+            DataProvider dataProvider = new DataProvider();
+            IDocument document = dataProvider.GetDocumentByKey(sopi);
             
             switch (type)
             {
@@ -43,18 +44,41 @@ namespace Patterns.Controllers
                     //TODO: kreiraj reporting za PDF
                     break;
             }
-            return View("Index", doc);
+            return View("Index", document);
         }
 
         public ActionResult Create()
         {
             //Pattern: Template
-            Law doc = new Law();
-            doc.DocTitle = "Bla";
-            doc.Segments = new List<Segment>();
-            doc.Create();
+            Law legalDocument = new Law();
+            legalDocument.DocTitle = "Legal document";
+            legalDocument.Segments = new List<Segment>();
 
-            return View("Index", doc);
+            try
+            {
+                 legalDocument.CreateDocument();
+            }
+            catch (DocumentException e)
+            {
+                // insert into log error- 
+            }
+            catch (NotImplementedException e)
+            {
+                // insert into log error- 
+
+            }
+            catch (Exception e)
+            {
+                // insert into log error- 
+
+            }
+            finally
+            {
+                //call this if exception occurs or not
+
+            }
+
+            return View("Index", legalDocument);
         }
     }
 }

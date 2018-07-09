@@ -7,16 +7,6 @@ namespace Model_Patterns.Models.Logger
 {
     public class DbLogger : Log
     {
-        //public DbLogger(Content.Logger logger)
-        //{
-        //    Logger = logger;
-        //}
-
-        //public override void InsertLog()
-        //{
-        //    throw new NotImplementedException();
-        //}
-
         public override void InsertLog(Content.Logger log)
         {
             //throw new NotImplementedException();

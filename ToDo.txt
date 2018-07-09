@@ -4,13 +4,25 @@
 //DONE: spojiti projekt na gh
 //DONE: napraviti testni commit i push
 
+//TODO: napraviti branch "No fun for you"
+//TODO: kreirati određenu funkcionalnost u branchu
+//TODO: obrisati branch
+
 //TODO: napraviti branch "Clean code"
 //TODO: kreirati određenu funkcionalnost u branchu
 //TODO: mergati branch sa masterom
 
-//TODO: napraviti branch "No fun for you"
+//TODO: napraviti branch "Unit testing"
 //TODO: kreirati određenu funkcionalnost u branchu
-//TODO: obrisati branch
+//TODO: mergati branch sa masterom
+
+//TODO: napraviti branch "AOP"
+//TODO: kreirati određenu funkcionalnost u branchu
+//TODO: mergati branch sa masterom
+
+//TODO: napraviti branch "Metrics"
+//TODO: kreirati određenu funkcionalnost u branchu
+//TODO: mergati branch sa masterom
 
 //Clean code
 //TODO: stilizirati naslovnicu
@@ -19,12 +31,14 @@
 //TODO: sve putanje i hardkodirane tekstove prebaciti u config dokumente
 
 //Clean code
-//TODO: imenovanje metoda - pregledati sve metode (Clean Code)
-//TODO: imenovanje varijabli - pregledati sve varijable (Clean Code)
-//TODO: formatiranje (Clean Code)
-//TODO: error handling (Clean Code)
+//DONE: napraviti branch "Clean code"
+//DONE: imenovanje metoda - pregledati sve metode (Clean Code)
+//DONE: imenovanje varijabli - pregledati sve varijable (Clean Code)
+//DONE: formatiranje (Clean Code)
+//DONE: error handling (Clean Code)
 
 //Unit testovi
+// TODO: napraviti branch "Unit testing"
 // TODO: unit testing - napraviti testove na bar 4 klase (u svakom sloju jedna)
 // TODO: napraviti usermanagment koja handla korisničke bodove i ima neku logiku na bazi bodova i tip korisnika - Pravo pristupa dokumentu
 // TODO: napraviti Mocking sa logerom - testirati da li vraća klasu i da li je klasa implementirana

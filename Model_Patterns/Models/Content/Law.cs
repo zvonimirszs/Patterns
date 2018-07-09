@@ -1,4 +1,5 @@
 ﻿using Model_Patterns.Interfaces;
+using Model_Patterns.Models.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -18,15 +19,31 @@ namespace Model_Patterns.Models.Content
         protected override void createHeader()
         {
             //TODO: kreiraj zaglavlje dokumenta
-            string title = this.DocTitle;
-            doc = this;
+            try
+            {
+                string title = this.DocTitle;
+                doc = this;
+            }
+            catch (Exception e)
+            {
+                throw new DocumentException("Error in createHeader method", e);
+            }
+
         }
 
         protected override void createSegments()
         {
             //TODO: kreiraj segmente dokumenta
-            List<Segment> list = this.Segments;
-            doc = this;
+            try
+            {
+                List<Segment> list = this.Segments;
+                doc = this;
+            }
+            catch (Exception e)
+            {
+                throw new DocumentException("Error in createSegments method", e);
+            }
+
         }
     }
 }

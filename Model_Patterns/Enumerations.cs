@@ -10,19 +10,16 @@ namespace Model_Patterns
         {
             Sql,
             WebApi
-        };
-
+        }
         public enum Cache
         {
             Http            
-        };
-
+        }
         public enum Logger
         {
             Db,
             File
         }
-
         public enum Reporting
         {
             Pdf,

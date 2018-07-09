@@ -1,8 +1,10 @@
-﻿using Dal_Pattern.Models;
+﻿using Dal_Pattern;
+using Dal_Pattern.Models;
 using Dal_Patterns.Models;
 using Model_Patterns;
 using Model_Patterns.Abstract;
 using Model_Patterns.Interfaces;
+using Model_Patterns.Models.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -20,31 +22,18 @@ namespace Dal_Patterns
         }
         public IDao GetInstance()
         {
-            var dbType = (Enumerations.Dao)Enum.Parse(typeof(Enumerations.Dao), _config.DictConfig["DaoType"]);
-
-            if (Enumerations.Dao.Sql == dbType)
+            try
             {
-                if (_IProviderDocument == null)
-                    _IProviderDocument = (IDao)Activator.CreateInstance(typeof(SqlDao));
+                var dbType = (Enumerations.Dao)Enum.Parse(typeof(Enumerations.Dao), _config.DictConfig["DaoType"]);
+                _IProviderDocument = Utilities.GetDaoProvider(_IProviderDocument, dbType);
+                _IProviderDocument.Config = Utilities.GetConfigForIDaoProvider(dbType, _config);
 
-                _IProviderDocument.Config = new DbSqlConfig(_config.DictConfig["DaoPath"]);
-
+                return _IProviderDocument;
             }
-            else if (Enumerations.Dao.WebApi == dbType)
+            catch (Exception e)
             {
-                if (_IProviderDocument == null)
-                    _IProviderDocument = (IDao)Activator.CreateInstance(typeof(WebApiDao));
-
-                _IProviderDocument.Config = new WebApiConfig(_config.DictConfig["WebApiPath"]);
+                throw new DataProviderException("Error in GetInstance method", e);
             }
-            else
-            {
-                if (_IProviderDocument == null)
-                    _IProviderDocument = (IDao)Activator.CreateInstance(typeof(SqlDao));
-
-                _IProviderDocument.Config = new DbSqlConfig(_config.DictConfig["DaoPath"]); ;
-            }
-            return _IProviderDocument;
         }
 
     }

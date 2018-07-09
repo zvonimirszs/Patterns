@@ -18,11 +18,13 @@ namespace Model_Patterns.Models.Content
         protected override void createHeader()
         {
             //TODO: kreiraj zaglavlje dokumenta
+            throw new NotImplementedException();
         }
 
         protected override void createSegments()
         {
             //TODO: kreiraj segmente dokumenta
+            throw new NotImplementedException();
         }
     }
 }

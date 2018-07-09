@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <OutputPath>D:\Development\NRAKO projekti\Lib\netcoreapp1.1\</OutputPath>
+    <OutputPath>D:\Development\NRAKO projekti\Lib\</OutputPath>
   </PropertyGroup>
 
 </Project>

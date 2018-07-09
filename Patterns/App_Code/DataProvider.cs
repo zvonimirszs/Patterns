@@ -7,6 +7,7 @@ using Patterns.Models;
 using Model_Patterns;
 using Model_Patterns.Interfaces;
 using Model_Patterns.Models;
+using Model_Patterns.Models.Exceptions;
 using Model_Patterns.Models.Content;
 using Model_Patterns.Abstract;
 
@@ -14,8 +15,8 @@ namespace Patterns.App_Code
 {
     public class DataProvider
     {
-        private IDao _dao;
-        private ICache _cache;
+        private IDao _dataLayer;
+        private ICache _cacheProvider;
         private AppConfig _config;
         public DataProvider()
         {
@@ -23,76 +24,116 @@ namespace Patterns.App_Code
             _config = Utilities.GetConfig();
             var cacheType = (Enumerations.Cache)Enum.Parse(typeof(Enumerations.Cache), _config.DictConfig["CacheType"]);
             //Pattern: Factory
-            _dao = new Dal_Patterns.DaoFactory(_config).GetInstance();
-            _cache = new CacheProvider().GetInstance(cacheType);
+            _dataLayer = new Dal_Patterns.DaoFactory(_config).GetInstance();
+            _cacheProvider = new CacheProvider().GetInstance(cacheType);
         }
-        public IDocument GetDocument(string sopi)
+        public IDocument GetDocumentByKey(string sopi)
         {
-            IDocument dtDocument = null;
+            IDocument document = null;
             try
             {
                 string sCacheId = string.Format("GetDocument");
-                if ((Utilities.CacheEnabledDocument) && (HttpContext.Current.Cache[sCacheId] != null))
+                if (Utilities.IsCacheAvailableForRetrive(sCacheId))
                 {
-                    dtDocument = _cache.Retreive<IDocument>(sCacheId);
+                    document = _cacheProvider.Retreive<IDocument>(sCacheId);
                 }
                 else
                 {
-                    List<string> listDocNum = new List<string>();
-                    dtDocument = _dao.GetDocument(sopi);
-                    if ((Utilities.CacheEnabledDocument) && (dtDocument != null))
+                    document = _dataLayer.GetDocument(sopi);
+                    if(Utilities.IsCacheAvailableForStorage(document))
                     {
-                        _cache.Store(sCacheId, dtDocument);
+                        _cacheProvider.Store(sCacheId, document);
                     }
                 }
             }
-            catch (Exception ex)
+            catch (CacheProviderException e)
             {
                 // insert into log error- 
+                document = null;
             }
-            return dtDocument;
+            catch (DataProviderException e)
+            {
+                // insert into log error- 
+                document = null;
+            }
+            catch (Exception e)
+            {
+                // insert into log error- 
+                document = null;
+            }
+            finally
+            {
 
+            }
+            return document;
         }
 
         public List<IDocument> GetDocuments()
         {
-            List<IDocument> listDocNum = new List<IDocument>();
+            List<IDocument> groupOfDocuments = new List<IDocument>();
             try
             {
                 string sCacheId = string.Format("GetDocuments");
-                if ((Utilities.CacheEnabledDocument) && (HttpContext.Current.Cache[sCacheId] != null))
+                if (Utilities.IsCacheAvailableForRetrive(sCacheId))
                 {
-                    listDocNum = _cache.Retreive<List<IDocument>>(sCacheId);
+                    groupOfDocuments = _cacheProvider.Retreive<List<IDocument>>(sCacheId);
                 }
                 else
                 {
-                    listDocNum = _dao.GetDocuments();
-                    if ((Utilities.CacheEnabledDocument) && (listDocNum != null))
+                    groupOfDocuments = _dataLayer.GetDocuments();
+                    if (Utilities.IsCacheAvailableForStorage(groupOfDocuments))
                     {
-                        _cache.Store(sCacheId, listDocNum);
+                        _cacheProvider.Store(sCacheId, groupOfDocuments);
                     }
                 }
             }
-            catch (Exception ex)
+            catch (CacheProviderException e)
             {
                 // insert into log error- 
+                groupOfDocuments = null;
             }
-            return listDocNum;
+            catch (DataProviderException e)
+            {
+                // insert into log error- 
+                groupOfDocuments = null;
+            }
+            catch (Exception e)
+            {
+                // insert into log error- 
+                groupOfDocuments = null;
+            }
+            finally
+            {
 
+            }
+            return groupOfDocuments;
         }
 
         public IUser UserAutorization(string username, string password)
         {
             try
             {
-                return _dao.UserAutorization(username, password);
+                return _dataLayer.UserAutorization(username, password);
             }
-            catch (Exception ex)
+            catch (CacheProviderException e)
             {
                 // insert into log error- 
+                return null;
             }
-            return null;
+            catch (DataProviderException e)
+            {
+                // insert into log error- 
+                return null;
+            }
+            catch (Exception e)
+            {
+                // insert into log error- 
+                return null;
+            }
+            finally
+            {
 
+            }
         }
     }
 }

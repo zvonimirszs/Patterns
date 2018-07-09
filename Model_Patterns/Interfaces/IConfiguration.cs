@@ -8,6 +8,5 @@ namespace Model_Patterns.Interfaces
     {
         Dictionary<string, string> DictConfig { get; set; }
 
-
     }
 }

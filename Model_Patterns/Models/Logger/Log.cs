@@ -8,8 +8,6 @@ namespace Model_Patterns.Models.Logger
     public abstract class Log
     {
         public Content.Logger Logger { get; set; }
-        //public abstract void InsertLog();
-
         public abstract void InsertLog(Model_Patterns.Models.Content.Logger log);
 
     }

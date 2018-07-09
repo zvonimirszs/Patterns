@@ -8,7 +8,6 @@ namespace Model_Patterns.Models.Logger
 {
     public class FileLogger : Log
     {
-
         public override void InsertLog(Content.Logger log)
         {
             string sPath = String.Format("{0}_{1}_{2}_{3}.txt", @"d:\NRAKO-Log\Log", log.PageId.ToString(), log.DocumentKey.ToString(), log.Date.ToString("yyyyMMddTHHmmss"));

@@ -18,7 +18,6 @@ namespace Model_Patterns.Models.Content
         public string SegmentContent { get; set; }
         public int CoInDocSegmentID { get; set; }
         public int DocHeaderID { get; set; }
-
         public int SegmentOrder { get; set; }
         public string SegmentRef { get; set; }
         public int PrivateSegmentID { get; set; }
