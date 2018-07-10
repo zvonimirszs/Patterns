@@ -9,8 +9,15 @@ using System.Web.Caching;
 namespace Patterns.Models.Cache
 {
     public class HttpCacheAdapter : ICache
-
     {
+        private ICacheDependency dependency;
+
+        public ICacheDependency CacheDependency { get; set; }
+
+        public HttpCacheAdapter()
+        {
+            dependency = CacheDependency;
+        }
         public void Remove(string key)
         {
             HttpContext.Current.Cache.Remove(key);
@@ -18,9 +25,9 @@ namespace Patterns.Models.Cache
 
         public void Store(string key, object o)
         {
-            CacheDependency cacheDependency = new CacheDependency(HttpContext.Current.Server.MapPath(Utilities.CacheFile));
+            CacheDependency cacheDependency = new CacheDependency(HttpContext.Current.Server.MapPath(CacheDependency.CacheFile));
 
-            HttpContext.Current.Cache.Insert(key, o, cacheDependency, DateTime.UtcNow.AddHours(int.Parse(Utilities.CacheRefresh)), System.Web.Caching.Cache.NoSlidingExpiration);
+            HttpContext.Current.Cache.Insert(key, o, cacheDependency, DateTime.UtcNow.AddHours(int.Parse(CacheDependency.CacheRefresh)), System.Web.Caching.Cache.NoSlidingExpiration);
         }
 
         public T Retreive<T>(string key)

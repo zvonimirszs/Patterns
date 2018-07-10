@@ -21,7 +21,7 @@ namespace Dal_Patterns.Models
         {
             throw new NotImplementedException();
         }
-        public IUser UserAutorization(string username, string password)
+        public IUser GetUserModelData(string username, string password)
         {
             throw new NotImplementedException();
         }

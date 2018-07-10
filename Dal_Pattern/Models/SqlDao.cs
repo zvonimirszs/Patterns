@@ -74,7 +74,7 @@ namespace Dal_Patterns.Models
                 throw new DataProviderException("Error in GetDocuments method", e);
             }
         }
-        public IUser UserAutorization(string username, string password)
+        public IUser GetUserModelData(string username, string password)
         {
             try
             {
@@ -118,7 +118,7 @@ namespace Dal_Patterns.Models
             }
             catch (Exception e)
             {
-                throw new DataProviderException("Error in UserAutorization method", e);
+                throw new DataProviderException("Error in GetUserModelData method", e);
             }
 
         }

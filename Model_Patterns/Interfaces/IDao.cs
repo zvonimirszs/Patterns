@@ -16,7 +16,7 @@ namespace Model_Patterns.Interfaces
         #endregion
 
         #region Users
-        IUser UserAutorization(string username, string password);        
+        IUser GetUserModelData(string username, string password);        
         #endregion
     }
 }

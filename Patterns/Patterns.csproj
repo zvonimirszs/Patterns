@@ -180,6 +180,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="App_Code\CacheProvider.cs" />
+    <Compile Include="Models\Cache\HttpCacheDependency.cs" />
     <Compile Include="Models\Cache\HttpCacheAdapter.cs" />
     <Compile Include="Models\ErrorHandling.cs" />
     <Compile Include="Models\User.cs" />

@@ -109,11 +109,11 @@ namespace Patterns.App_Code
             return groupOfDocuments;
         }
 
-        public IUser UserAutorization(string username, string password)
+        public IUser GetUserModelData(string username, string password)
         {
             try
             {
-                return _dataLayer.UserAutorization(username, password);
+                return _dataLayer.GetUserModelData(username, password);
             }
             catch (CacheProviderException e)
             {

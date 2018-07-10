@@ -4,13 +4,13 @@
 //DONE: spojiti projekt na gh
 //DONE: napraviti testni commit i push
 
-//TODO: napraviti branch "No fun for you"
-//TODO: kreirati određenu funkcionalnost u branchu
+//DONE: napraviti branch "No fun for you2"
+//DONE: kreirati određenu funkcionalnost u branchu
 //TODO: obrisati branch
 
-//TODO: napraviti branch "Clean code"
-//TODO: kreirati određenu funkcionalnost u branchu
-//TODO: mergati branch sa masterom
+//DONE: napraviti branch "Clean code"
+//DONE: kreirati određenu funkcionalnost u branchu
+//DONE: mergati branch sa masterom
 
 //TODO: napraviti branch "Unit testing"
 //TODO: kreirati određenu funkcionalnost u branchu
@@ -38,9 +38,9 @@
 //DONE: error handling (Clean Code)
 
 //Unit testovi
-// TODO: napraviti branch "Unit testing"
-// TODO: unit testing - napraviti testove na bar 4 klase (u svakom sloju jedna)
-// TODO: napraviti usermanagment koja handla korisničke bodove i ima neku logiku na bazi bodova i tip korisnika - Pravo pristupa dokumentu
+// DONE: napraviti branch "Unit testing"
+// DONE: unit testing - napraviti testove na bar 4 klase (u svakom sloju jedna)
+// DONE: napraviti usermanagment koja handla korisničke bodove i ima neku logiku na bazi bodova - Pravo pristupa dokumentu
 // TODO: napraviti Mocking sa logerom - testirati da li vraća klasu i da li je klasa implementirana
 
 Testing framework: NUnit, MSTest, MbUnit

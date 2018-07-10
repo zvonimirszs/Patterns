@@ -31,12 +31,17 @@ namespace Patterns.Models.Authorization
         public void OnResultExecuted(ResultExecutedContext filterContext)
         {
             //koji je tip korisnika i da li ima prava pristupa stranici 
+            //TODO: provjeriti da li da li je korisnik enabled
+            //TODO: provjeriti da li da li je prekoračio broj bodova
+            //TODO: provjeriti da li da li je prekoračio broj dokumenata
+            //TODO: provjeriti da li da li ima IP restrikciju i da li odgovara IP trenutnoj IP adresi korisnika
+            //TODO: provjeriti da li paket od korisnika ima u paketu od dokumenta
             bool isPackage = false;
             IUser user = (IUser)HttpContext.Current.Session["User"];
             IDocument doc = (IDocument)HttpContext.Current.Session["Document"];
             foreach (var item in user.Packages)
             {
-                //TODO: probvjeriti da li paket od korisnika ima u paketu od dokumenta
+                //provjeriti da li paket od korisnika ima u paketu od dokumenta
                 isPackage = true;
             }
             if (!isPackage)

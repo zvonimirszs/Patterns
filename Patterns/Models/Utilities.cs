@@ -8,6 +8,7 @@ using System.Xml.Linq;
 using Model_Patterns.Interfaces;
 using Model_Patterns.Abstract;
 using Patterns.Models.Cache;
+using Model_Patterns.Models;
 
 namespace Patterns.Models
 {
@@ -29,7 +30,7 @@ namespace Patterns.Models
                 return instance;
             }
         }
-
+        #region AppConfig
         public static AppConfig GetConfig()
         {
 
@@ -38,7 +39,8 @@ namespace Patterns.Models
 
             return _config;
         }
-        #region web.config
+        #endregion
+        #region WebConfig
         /// <summary>
         /// Cache for documents
         /// </summary>
@@ -81,24 +83,33 @@ namespace Patterns.Models
             }
         }
         #endregion
-
         #region Providers
         public static ICache GetCacheProvider(ICache iProviderDocument, Enumerations.Cache cacheType)
         {
+            ICacheDependency dependency = new HttpCacheDependency();
+            dependency.CacheFile = CacheFile;
+            dependency.CacheRefresh = CacheRefresh;
             switch (cacheType)
             {
                 case Enumerations.Cache.Http:
                     if (iProviderDocument == null)
+                    {
                         iProviderDocument = (ICache)Activator.CreateInstance(typeof(HttpCacheAdapter));
+                        iProviderDocument.CacheDependency = dependency;
+                    }
                     break;
                 default:
                     if (iProviderDocument == null)
+                    {
                         iProviderDocument = (ICache)Activator.CreateInstance(typeof(HttpCacheAdapter));
+                        iProviderDocument.CacheDependency = dependency;
+                    }
                     break;
             }
             return iProviderDocument;
         }
         #endregion
+        #region Cache
         public static Boolean IsCacheAvailableForRetrive(string sCacheId)
         {
             return ((Utilities.CacheEnabledDocument) && (HttpContext.Current.Cache[sCacheId] != null));
@@ -107,5 +118,35 @@ namespace Patterns.Models
         {
             return ((Utilities.CacheEnabledDocument) && (objForComparison != null));
         }
+        #endregion
+        #region User
+        public static Boolean IsUserEnabled(int value)
+        {
+            return value == 1;
+        }
+        public static Boolean IsUserOverUsedByDocuments(int numberOfDocuments, int numberOfMaxDocuments)
+        {
+            if (numberOfMaxDocuments == -1)
+                return false;
+            return numberOfMaxDocuments < numberOfDocuments;
+        }
+        public static Boolean IsUserOverUsedByPoints(int numberOfPoints, int numberOfMaxPoints)
+        {
+            if (numberOfMaxPoints == -1)
+                return false;
+            return numberOfMaxPoints <= numberOfPoints;
+        }
+        public static Boolean IsUserIpRestricted(string userIpAddress, string locationIpAddress)
+        {
+            if (String.IsNullOrEmpty(userIpAddress))
+                return false;
+            else
+                return !(userIpAddress == locationIpAddress);
+        }
+        public static Boolean IsUserInPackage(List<Package> userPackages, List<Package> documentPackages)
+        {
+            return userPackages.Where(n => documentPackages.Select(n1 => n1.Id).Contains(n.Id)).Count() > 0;            
+        }
+        #endregion
     }
 }

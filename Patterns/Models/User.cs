@@ -14,7 +14,7 @@ namespace Patterns.Models
         {
             // TODO: provjeriti da li su akreditacije OK i nadopuniti model
             DataProvider data = new DataProvider();
-            IUser user =  data.UserAutorization(_username,_password);
+            IUser user =  data.GetUserModelData(_username,_password);
             HttpContext.Current.Session["User"] = user;
             if (user != null)
                 return true;
