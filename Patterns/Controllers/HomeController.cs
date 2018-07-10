@@ -11,13 +11,16 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Patterns.Models.Authorization;
+using Patterns.Aspects;
 
 namespace Patterns.Controllers
 {
     public class HomeController : Controller
     {
         
-        private int _pageId = 1;        
+        private int _pageId = 1;
+
+        [LoggingAspect(AspectPriority = 0)]
         public ActionResult Index()
         {
             ViewBag.Title = "Home Page";

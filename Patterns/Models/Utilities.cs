@@ -94,15 +94,13 @@ namespace Patterns.Models
                 case Enumerations.Cache.Http:
                     if (iProviderDocument == null)
                     {
-                        iProviderDocument = (ICache)Activator.CreateInstance(typeof(HttpCacheAdapter));
-                        iProviderDocument.CacheDependency = dependency;
-                    }
+                        iProviderDocument = (ICache)Activator.CreateInstance(typeof(HttpCacheAdapter), dependency);
+                     }
                     break;
                 default:
                     if (iProviderDocument == null)
                     {
-                        iProviderDocument = (ICache)Activator.CreateInstance(typeof(HttpCacheAdapter));
-                        iProviderDocument.CacheDependency = dependency;
+                        iProviderDocument = (ICache)Activator.CreateInstance(typeof(HttpCacheAdapter), dependency);
                     }
                     break;
             }

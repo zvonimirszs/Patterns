@@ -12,11 +12,9 @@ namespace Patterns.Models.Cache
     {
         private ICacheDependency dependency;
 
-        public ICacheDependency CacheDependency { get; set; }
-
-        public HttpCacheAdapter()
+        public HttpCacheAdapter(ICacheDependency dependency)
         {
-            dependency = CacheDependency;
+            this.dependency = dependency;
         }
         public void Remove(string key)
         {
@@ -25,9 +23,9 @@ namespace Patterns.Models.Cache
 
         public void Store(string key, object o)
         {
-            CacheDependency cacheDependency = new CacheDependency(HttpContext.Current.Server.MapPath(CacheDependency.CacheFile));
+            CacheDependency cacheDependency = new CacheDependency(HttpContext.Current.Server.MapPath(dependency.CacheFile));
 
-            HttpContext.Current.Cache.Insert(key, o, cacheDependency, DateTime.UtcNow.AddHours(int.Parse(CacheDependency.CacheRefresh)), System.Web.Caching.Cache.NoSlidingExpiration);
+            HttpContext.Current.Cache.Insert(key, o, cacheDependency, DateTime.UtcNow.AddHours(int.Parse(dependency.CacheRefresh)), System.Web.Caching.Cache.NoSlidingExpiration);
         }
 
         public T Retreive<T>(string key)

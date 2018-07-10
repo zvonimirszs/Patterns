@@ -1,4 +1,5 @@
-﻿using Patterns.Models;
+﻿using Patterns.Aspects;
+using Patterns.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,7 @@ namespace Patterns.Controllers
     public class UserController : Controller
     {
         // GET: /User/
+        [LoggingAspect(AspectPriority = 0)]
         public ActionResult Index()
         {
             return View();
@@ -22,6 +24,7 @@ namespace Patterns.Controllers
             return View();
         }
 
+        [LoggingAspect(AspectPriority = 0)]
         [HttpPost]
         public ActionResult Login(User user)
         {

@@ -9,6 +9,7 @@ using Patterns.Models.Authorization;
 using Model_Patterns.Interfaces;
 using Patterns.App_Code;
 using Model_Patterns;
+using Patterns.Aspects;
 
 namespace Patterns.Controllers
 {
@@ -47,6 +48,7 @@ namespace Patterns.Controllers
             return View("Index", document);
         }
 
+        [ExceptionHandlerAspect(AspectPriority = 0)]
         public ActionResult Create()
         {
             //Pattern: Template
@@ -54,29 +56,7 @@ namespace Patterns.Controllers
             legalDocument.DocTitle = "Legal document";
             legalDocument.Segments = new List<Segment>();
 
-            try
-            {
-                 legalDocument.CreateDocument();
-            }
-            catch (DocumentException e)
-            {
-                // insert into log error- 
-            }
-            catch (NotImplementedException e)
-            {
-                // insert into log error- 
-
-            }
-            catch (Exception e)
-            {
-                // insert into log error- 
-
-            }
-            finally
-            {
-                //call this if exception occurs or not
-
-            }
+            legalDocument.CreateDocument();
 
             return View("Index", legalDocument);
         }

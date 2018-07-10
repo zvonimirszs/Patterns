@@ -8,4 +8,8 @@
     <OutputPath>D:\Development\NRAKO projekti\Lib\</OutputPath>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="PostSharp" Version="6.0.18" />
+  </ItemGroup>
+
 </Project>

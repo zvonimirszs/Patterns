@@ -12,12 +12,12 @@
 //DONE: kreirati određenu funkcionalnost u branchu
 //DONE: mergati branch sa masterom
 
-//TODO: napraviti branch "Unit testing"
-//TODO: kreirati određenu funkcionalnost u branchu
-//TODO: mergati branch sa masterom
+//DONE: napraviti branch "Unit testing"
+//DONE: kreirati određenu funkcionalnost u branchu
+//DONE: mergati branch sa masterom
 
-//TODO: napraviti branch "AOP"
-//TODO: kreirati određenu funkcionalnost u branchu
+//DONE: napraviti branch "AOP"
+//DONE: kreirati određenu funkcionalnost u branchu
 //TODO: mergati branch sa masterom
 
 //TODO: napraviti branch "Metrics"
@@ -38,10 +38,10 @@
 //DONE: error handling (Clean Code)
 
 //Unit testovi
-// DONE: napraviti branch "Unit testing"
-// DONE: unit testing - napraviti testove na bar 4 klase (u svakom sloju jedna)
-// DONE: napraviti usermanagment koja handla korisničke bodove i ima neku logiku na bazi bodova - Pravo pristupa dokumentu
-// TODO: napraviti Mocking sa logerom - testirati da li vraća klasu i da li je klasa implementirana
+//DONE: napraviti branch "Unit testing"
+//DONE: unit testing - napraviti testove na bar 4 klase (u svakom sloju jedna)
+//DONE: napraviti usermanagment koja handla korisničke bodove i ima neku logiku na bazi bodova - Pravo pristupa dokumentu
+//DONE: napraviti Mocking
 
 Testing framework: NUnit, MSTest, MbUnit
 Test runner: NUnit, MSTest, ReSharper, TDD.NET
@@ -60,7 +60,11 @@ Bottom Up Integration testing
 Mixed Integration testing
 
 
-// AOP Aspect-oriented programming - vjezbe 2
+// AOP Aspect-oriented programming
+//DONE: za svaki tip greške napraviti logiku
+//DONE: za svaku metodu (početak i kraj) napraviti loging logiku
+//DONE: što napraviti sa objektom ako je null
+//DONE: timer za metode
 
 
 //Metrika - vjezbe 5
