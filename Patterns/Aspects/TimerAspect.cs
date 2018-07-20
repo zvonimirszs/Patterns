@@ -1,4 +1,6 @@
-﻿using PostSharp.Aspects;
+﻿using Metrics;
+using PostSharp.Aspects;
+using PostSharp.Serialization;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -7,11 +9,13 @@ using System.Web;
 
 namespace Patterns.Aspects
 {
-    [Serializable]
+    [PSerializable]
     public class TimerAspect : OnMethodBoundaryAspect
     {
-        [NonSerialized]
+        [PNonSerialized]
         private Stopwatch stopwatch = new Stopwatch();
+        [PNonSerialized]
+        private Timer timer;
 
         public override void RuntimeInitialize(System.Reflection.MethodBase method)
         {
@@ -20,6 +24,7 @@ namespace Patterns.Aspects
 
         public override void OnEntry(MethodExecutionArgs args)
         {
+            timer = Metric.Timer("Method " + args.Method.Name + " duration", Unit.Requests);
             stopwatch.Start();
         }
 
